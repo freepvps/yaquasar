@@ -1,5 +1,4 @@
 import asyncio
-import aiohttp
 import os
 from yah import QuasarApi, SessionIdAuthorization
 
