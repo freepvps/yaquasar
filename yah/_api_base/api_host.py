@@ -1,8 +1,7 @@
 import typing
-from aiohttp import ClientSession
+from .._http import create_client
 from .raw_client import RawClient
 from .api_storage import ApiStorage
-from .auth import AuthorizationBase
 
 
 class ApiHost:
@@ -11,12 +10,10 @@ class ApiHost:
 
     def __init__(
         self,
-        authorization: AuthorizationBase,
         url_base: str,
     ) -> None:
         self.client = RawClient(
-            session=ClientSession(),
-            authorization=authorization,
+            session=create_client(),
             url_base=url_base,
         )
         self.storage = ApiStorage(self.client)

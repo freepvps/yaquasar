@@ -1,13 +1,13 @@
 import asyncio
 import os
-from yah import QuasarApi, SessionIdAuthorization
+from yah import QuasarApi, XTokenAuthorization
 
 
-SESSION_ID = os.environ['YANDEX_SESSION_ID']  # from Session_id cookie
+X_TOKEN = os.environ['YANDEX_X_TOKEN']  # from Session_id cookie
 
 
 async def main() -> None:
-    authorization=SessionIdAuthorization(SESSION_ID)
+    authorization = XTokenAuthorization(X_TOKEN)
     async with QuasarApi(authorization=authorization) as api:
         res = await api.user.devices()
         for household in res.households:

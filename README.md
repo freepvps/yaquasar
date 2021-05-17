@@ -14,7 +14,7 @@ from yah import QuasarApi, SessionIdAuthorization
 
 
 async def main():
-    authorization=SessionIdAuthorization('3:1618855...')  # Session_id cookie
+    authorization=SessionIdAuthorization('3:1618855...', '91...')  # Session_id and yandexuid cookies
     async with QuasarApi(authorization=authorization) as api:
         res = await api.user.devices()
         for household in res.households:

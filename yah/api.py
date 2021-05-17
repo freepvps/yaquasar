@@ -1,12 +1,17 @@
 import typing
-from .apis import UserApi
-from ._api_base import ApiHost, AuthorizationBase
+from .apis import UserApi, CsrfApi
+from ._api_base import ApiHost
 from ._base import DEFAULT_QUASAR_API_URL
+from .auth import AuthorizationBase
+from ._middlewares import CsrfMiddleware, HttpRetryMiddleware
 
 
 class QuasarApi(ApiHost):
     def __init__(self, authorization: AuthorizationBase) -> None:
-        super().__init__(authorization, url_base=DEFAULT_QUASAR_API_URL)
+        super().__init__(url_base=DEFAULT_QUASAR_API_URL)
+        self.client.session.middlewares.append(HttpRetryMiddleware())
+        authorization.initialize(self.client, self.storage)
+        self.client.session.middlewares.append(CsrfMiddleware(self.storage.get_api(CsrfApi)))
 
     async def __aenter__(self) -> 'QuasarApi':
         await super().__aenter__()
