@@ -23,7 +23,7 @@ def read_requirements(path: str) -> typing.List[str]:
 def main():
     setuptools.setup(
         name='python-yah',
-        version='1.0.0',
+        version='1.0.1',
         description='Yandex smart home apis',
         long_description=read_all('README.md'),
         long_description_content_type='text/markdown',

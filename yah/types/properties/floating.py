@@ -12,7 +12,6 @@ class Parameters:
 
 @dc.dataclass
 class State:
-    instance: str
     value: float = 0.0
 
 

@@ -1,6 +1,5 @@
 import typing
 import dataclasses as dc
-from ..common import Unixtime
 from ..._base import as_dict, from_dict
 
 
