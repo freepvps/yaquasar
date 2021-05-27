@@ -18,10 +18,10 @@ async def main() -> None:
                     print(f'  - device: {device.name} ({device.id})')
                     print(f'    capabilities:')
                     for capability in device.capabilities:
-                        print(f'    - {capability.type}')
+                        print(f'    - {capability.type} {capability.state} {capability.parameters}')
                     print(f'    properties:')
                     for property in device.properties:
-                        print(f'    - {property.type}')
+                        print(f'    - {property.type} {property.state} {property.parameters}')
 
 
 if __name__ == '__main__':

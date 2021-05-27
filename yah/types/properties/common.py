@@ -33,8 +33,8 @@ C = typing.TypeVar('C', bound=PropertyBase)
 
 
 def cast_property(value: PropertyBase, target_type: typing.Type[C]) -> C:
-    parameters_type: typing.Type[typing.Any] = value.PARAMETERS
-    state_type: typing.Type[typing.Any] = value.STATE
+    parameters_type: typing.Type[typing.Any] = target_type.PARAMETERS
+    state_type: typing.Type[typing.Any] = target_type.STATE
     return target_type(
         type=value.type,
         reportable=value.reportable,
