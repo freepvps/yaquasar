@@ -1,6 +1,7 @@
 import enum
 import typing
 import dataclasses as dc
+from typing_extensions import Protocol
 
 
 QueryParams = typing.Dict[str, str]
@@ -31,7 +32,7 @@ class Request:
     json: typing.Any = None
 
 
-class Response(typing.Protocol):
+class Response(Protocol):
     @property
     def status(self) -> int: ...
     async def read(self) -> bytes: ...
@@ -39,7 +40,7 @@ class Response(typing.Protocol):
     async def json(self) -> typing.Any: ...
 
 
-class RequestMakerBase(typing.Protocol):
+class RequestMakerBase(Protocol):
     async def request(self, request: Request) -> Response: ...
     async def __aenter__(self) -> 'RequestMakerBase': ...
     async def __aexit__(
@@ -50,7 +51,7 @@ class RequestMakerBase(typing.Protocol):
     ) -> None: ...
 
 
-class RequestMiddlewareBase(typing.Protocol):
+class RequestMiddlewareBase(Protocol):
     async def on_request(self, request: Request, maker: RequestMakerBase) -> Response: ...
 
 
